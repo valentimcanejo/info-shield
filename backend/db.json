@@ -1,9 +1,9 @@
 {
   "users": [
     {
-      "id": "2736",
       "email": "valentim.canejo@hotmail.com",
-      "senha": "123456"
+      "password": "$2a$10$eItXljGxQOhzpdFIzKb4puaFIVK8Ceh2HbuO4EHuPGzYS1/ETw25u",
+      "id": 1
     }
   ]
 }

@@ -14,7 +14,7 @@ import { Input, InputField } from "../components/ui/input";
 import { CustomText } from "../components/ui/text";
 import { VStack } from "../components/ui/vstack";
 //import { register } from "../services/auth";
-import { register } from "../backend/auth/register";
+import { register } from "../services/auth/register";
 import { getErrorMessage } from "../utils/errorHandler";
 
 const schema = z
