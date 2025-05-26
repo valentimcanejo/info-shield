@@ -4,6 +4,11 @@
       "email": "valentim.canejo@hotmail.com",
       "password": "$2a$10$eItXljGxQOhzpdFIzKb4puaFIVK8Ceh2HbuO4EHuPGzYS1/ETw25u",
       "id": 1
+    },
+    {
+      "email": "valentim.canejo2@hotmail.com",
+      "password": "$2a$10$oL0oZzZ1SqflWFforAu.sugyrY80cfkNDq8oFx3VWAirB9Zno4ALG",
+      "id": 2
     }
   ]
 }

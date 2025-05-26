@@ -41,7 +41,7 @@ export default function Register() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async ({
+  const handleRegister = async ({
     email,
     password,
   }: {
@@ -134,7 +134,7 @@ export default function Register() {
           className="mt-4"
           shadow
           fullWidth
-          onPress={handleSubmit(onSubmit)}
+          onPress={handleSubmit(handleRegister)}
         >
           <ButtonText>Cadastrar-se</ButtonText>
         </Button>

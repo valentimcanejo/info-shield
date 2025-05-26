@@ -2,7 +2,6 @@ import { router } from "expo-router";
 
 import { useState } from "react";
 import Toast from "react-native-toast-message";
-import { login } from "../backend/auth/login";
 import { Button, ButtonText } from "../components/ui/button";
 import {
   FormControl,
@@ -12,6 +11,7 @@ import {
 import { Input, InputField } from "../components/ui/input";
 import { CustomText } from "../components/ui/text";
 import { VStack } from "../components/ui/vstack";
+import { login } from "../services/auth/login";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");

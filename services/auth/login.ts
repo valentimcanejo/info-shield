@@ -9,6 +9,8 @@ type LoginProps = {
 export const login = async ({ email, password }: LoginProps) => {
   try {
     const response = await api.post("/login", { email, password });
+    console.log(response.data);
+
     await AsyncStorage.setItem("token", response.data.accessToken);
     return response.data;
   } catch (error: any) {
