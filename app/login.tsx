@@ -2,6 +2,7 @@ import { router } from "expo-router";
 
 import { useState } from "react";
 import Toast from "react-native-toast-message";
+import { login } from "../backend/auth/login";
 import { Button, ButtonText } from "../components/ui/button";
 import {
   FormControl,
@@ -11,17 +12,14 @@ import {
 import { Input, InputField } from "../components/ui/input";
 import { CustomText } from "../components/ui/text";
 import { VStack } from "../components/ui/vstack";
-//import { login } from "../services/auth";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async () => {
     try {
-      console.log(email, senha);
-
-      //await login({ email, senha });
+      await login({ email, password });
       router.replace("/");
     } catch (error) {
       console.log(error);
@@ -60,8 +58,8 @@ export default function SignIn() {
             <InputField
               type="password"
               placeholder="Digite a senha..."
-              value={senha}
-              onChangeText={(text) => setSenha(text)}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
             />
           </Input>
           {/* <FormControlHelper>
@@ -82,7 +80,7 @@ export default function SignIn() {
         <Button
           variant="link"
           fullWidth
-          //onPress={() => router.push("/register")}
+          onPress={() => router.push("/register")}
         >
           <CustomText>Cadastrar-se</CustomText>
         </Button>

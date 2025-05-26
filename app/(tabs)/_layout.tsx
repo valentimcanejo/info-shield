@@ -39,7 +39,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="device-data"
         options={{
-          title: "Device Data",
+          title: "Dispositivo",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="paperplane.fill" color={color} />
           ),

@@ -21,7 +21,6 @@ export default function RootLayout() {
   });
   const client = new QueryClient();
 
-  // ✅ Still call hooks even when fonts aren't loaded
   useEffect(() => {
     if (loaded) {
       router.replace("/login");
