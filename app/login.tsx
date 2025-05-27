@@ -12,10 +12,12 @@ import { Input, InputField } from "../components/ui/input";
 import { CustomText } from "../components/ui/text";
 import { VStack } from "../components/ui/vstack";
 import { login } from "../services/auth/login";
+import { useThemeStore } from "../store/use-theme-store";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { theme, toggleTheme } = useThemeStore();
 
   const handleSubmit = async () => {
     try {
@@ -32,6 +34,9 @@ export default function SignIn() {
           Entrar
         </CustomText>
         <CustomText className="text-xl font-bold">Bem Vindo!</CustomText>
+        <Button onPress={toggleTheme}>
+          <ButtonText>Trocar tema</ButtonText>
+        </Button>
       </VStack>
       <VStack className="items-center w-full" space="xl">
         <FormControl

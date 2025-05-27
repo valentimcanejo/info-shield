@@ -13,19 +13,15 @@ export default function HomeScreen() {
     queryFn: () => api.get("/sections"),
   });
 
-  const sections = (data?.data as Section[]) || [];
+  const sections = (data?.data?.sections as Section[]) || [];
 
   const [selectedSectionId, setSelectedSectionId] = useState("");
 
   useEffect(() => {
-    if (sections.length > 0 && !selectedSectionId) {
+    if (sections?.length > 0 && !selectedSectionId) {
       setSelectedSectionId(sections[0].id);
     }
   }, [sections]);
-
-  const selectedSection = sections.find(
-    (section: any) => section.id === selectedSectionId
-  );
 
   if (isLoading) {
     return (
@@ -42,6 +38,10 @@ export default function HomeScreen() {
       </VStack>
     );
   }
+  console.log(sections);
+  const selectedSection = sections?.find(
+    (section: any) => section.id === selectedSectionId
+  );
 
   return (
     <VStack style={styles.titleContainer} space="xl">
@@ -73,7 +73,7 @@ export default function HomeScreen() {
         data={selectedSection?.data}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={styles.stepContainer}>
+          <View>
             <CustomText size="lg" bold>
               {item.title}
             </CustomText>
@@ -90,10 +90,5 @@ const styles = StyleSheet.create({
   titleContainer: {
     marginTop: StatusBar.currentHeight,
     padding: 20,
-  },
-  stepContainer: {
-    padding: 12,
-    backgroundColor: "#f2f2f2",
-    borderRadius: 8,
   },
 });

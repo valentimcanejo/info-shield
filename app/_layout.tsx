@@ -14,6 +14,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { AuthProvider } from "../context/auth-context";
+import { useThemeStore } from "../store/use-theme-store";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -21,6 +22,7 @@ export default function RootLayout() {
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
   const client = new QueryClient();
+  const theme = useThemeStore((state) => state.theme);
 
   useEffect(() => {
     if (loaded) {
@@ -33,7 +35,7 @@ export default function RootLayout() {
   }
 
   return (
-    <GluestackUIProvider mode="light">
+    <GluestackUIProvider mode={theme}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <AuthProvider>
           <QueryClientProvider client={client}>
