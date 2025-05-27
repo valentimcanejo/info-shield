@@ -140,3 +140,5 @@ Use o aplicativo **Expo Go** no seu dispositivo físico para escanear o QR Code 
 - 🌐 Se o seu IP mudar (ex.: ao trocar de rede Wi-Fi), **atualize o arquivo `.env`** com o novo IP.
 
 ---
+
+![Demonstração da aplicação](https://i.imgur.com/q56mMEB.gif)
