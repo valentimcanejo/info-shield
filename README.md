@@ -141,4 +141,7 @@ Use o aplicativo **Expo Go** no seu dispositivo físico para escanear o QR Code 
 
 ---
 
-![Demonstração da aplicação](https://i.imgur.com/q56mMEB.gif)
+## Demonstração
+<img src="./assets/demo.gif" width="300"/>
+
+
