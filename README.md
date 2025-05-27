@@ -27,7 +27,7 @@ Este projeto consiste em uma aplicação **React Native com Expo** e um **backen
 ### 1️⃣ Clone o repositório
 
 ```bash
-git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/valentimcanejo/info-shield.git)
+git clone https://github.com/valentimcanejo/info-shield.git
 cd info-shield
 ```
 
@@ -99,7 +99,7 @@ No terminal:
 
 ```bash
 cd backend
-npm run dev
+npm run start
 ```
 
 O backend estará rodando em:
@@ -115,7 +115,7 @@ http://SEU_IP_LOCAL:3001
 Em outro terminal (na raiz do projeto):
 
 ```bash
-npx expo start
+npm run start
 ```
 
 Use o aplicativo **Expo Go** no seu dispositivo físico para escanear o QR Code ou utilize um emulador.
@@ -126,11 +126,11 @@ Use o aplicativo **Expo Go** no seu dispositivo físico para escanear o QR Code 
 
 ### 🔹 No backend (`/backend`)
 
-- `npm run dev` — Inicia o json-server mockado na porta 3001.
+- `npm run start` — Inicia o json-server mockado na porta 3001.
 
 ### 🔸 Na aplicação Expo
 
-- `npx expo start` — Inicia o servidor de desenvolvimento do Expo.
+- `npm run start` — Inicia o servidor de desenvolvimento do Expo.
 
 ---
 
