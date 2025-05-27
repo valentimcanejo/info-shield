@@ -86,7 +86,7 @@ Procure pelo endereço da sua rede (normalmente começa com `192.168.x.x` ou `10
 ✅ **Exemplo de `.env`:**
 
 ```
-API_URL=http://192.168.0.2:3001
+EXPO_PUBLIC_API_KEY=http://192.168.0.2:3001
 ```
 
 > 🏠 Utilize seu IP local para que o backend e o app rodando no celular ou emulador possam se comunicar corretamente.
