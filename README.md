@@ -60,7 +60,7 @@ cd ..
 Na **raiz do projeto** (onde está o arquivo `package.json` da aplicação Expo), crie um arquivo chamado **`.env`** e adicione:
 
 ```
-API_URL=http://SEU_IP_LOCAL:3001
+EXPO_PUBLIC_API_KEY=http://SEU_IP_LOCAL:3001
 ```
 
 ⚠️ **Atenção:** Substitua `SEU_IP_LOCAL` pelo seu IP local.
