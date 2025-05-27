@@ -8,7 +8,7 @@ type RegisterProps = {
 
 export const register = async ({ email, password }: RegisterProps) => {
   try {
-    const response = await api.post("http://192.168.0.2:3001/register", {
+    const response = await api.post("/register", {
       email,
       password,
     });

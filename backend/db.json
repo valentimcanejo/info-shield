@@ -9,6 +9,11 @@
       "email": "valentim.canejo2@hotmail.com",
       "password": "$2a$10$oL0oZzZ1SqflWFforAu.sugyrY80cfkNDq8oFx3VWAirB9Zno4ALG",
       "id": 2
+    },
+    {
+      "email": "teste1@hotmail.com",
+      "password": "$2a$10$ePaRwbCZu0hzO0liPe9P1u4EhLKaLjT0YmxRxUQQGAMoIQ8zjil8a",
+      "id": 3
     }
   ],
   "sections": [

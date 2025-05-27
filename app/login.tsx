@@ -23,13 +23,17 @@ export default function SignIn() {
       await login({ email, password });
       router.replace("/");
     } catch (error) {
+      Toast.show({
+        type: "error",
+        text1: "Credenciais inválidas",
+      });
       console.log(error);
     }
   };
 
   return (
     <View className="items-center justify-center flex-1 px-4 bg-background">
-      <View className="absolute z-10 top-16 right-6">
+      <View className="absolute top-16 right-6">
         <ChangeThemeButton />
       </View>
 

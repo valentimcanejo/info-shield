@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
 import { useForm } from "react-hook-form";
-import { Text } from "react-native";
 import Toast from "react-native-toast-message";
 import { z } from "zod";
 import { Button, ButtonText } from "../components/ui/button";
@@ -14,6 +13,8 @@ import { Input, InputField } from "../components/ui/input";
 import { CustomText } from "../components/ui/text";
 import { VStack } from "../components/ui/vstack";
 //import { register } from "../services/auth";
+import { View } from "react-native";
+import ChangeThemeButton from "../components/change-theme-button";
 import { register } from "../services/auth/register";
 import { getErrorMessage } from "../utils/errorHandler";
 
@@ -25,7 +26,7 @@ const schema = z
       .string()
       .min(6, "A senha deve ter pelo menos 6 caracteres"),
   })
-  .refine((data: any) => data.senha === data.confirmPassword, {
+  .refine((data: any) => data.password === data.confirmPassword, {
     message: "As senhas não coincidem",
     path: ["confirmPassword"],
   });
@@ -68,7 +69,10 @@ export default function Register() {
   };
 
   return (
-    <VStack className="items-center flex-1 w-full p-4 justify-evenly">
+    <View className="items-center justify-center flex-1 px-4 bg-background">
+      <View className="absolute top-16 right-6">
+        <ChangeThemeButton />
+      </View>
       <VStack className="items-center" space="lg">
         <CustomText className="text-4xl font-bold text-primary-500">
           Cadastrar Conta
@@ -90,7 +94,9 @@ export default function Register() {
             />
           </Input>
           {errors.email && (
-            <Text className="text-red-500">{errors.email.message}</Text>
+            <CustomText className="text-red-500">
+              {errors.email.message}
+            </CustomText>
           )}
         </FormControl>
 
@@ -107,7 +113,9 @@ export default function Register() {
             />
           </Input>
           {errors.password && (
-            <Text className="text-red-500">{errors.password.message}</Text>
+            <CustomText className="text-red-500">
+              {errors.password.message}
+            </CustomText>
           )}
         </FormControl>
 
@@ -124,9 +132,9 @@ export default function Register() {
             />
           </Input>
           {errors.confirmPassword && (
-            <Text className="text-red-500">
+            <CustomText className="text-red-500">
               {errors.confirmPassword.message}
-            </Text>
+            </CustomText>
           )}
         </FormControl>
 
@@ -139,11 +147,11 @@ export default function Register() {
           <ButtonText>Cadastrar-se</ButtonText>
         </Button>
         <Button variant="link" fullWidth onPress={() => router.back()}>
-          <CustomText>Já possui uma conta</CustomText>
+          <CustomText>Já possuo uma conta</CustomText>
         </Button>
       </VStack>
 
       <Toast />
-    </VStack>
+    </View>
   );
 }
