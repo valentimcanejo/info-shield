@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { FlatList, StatusBar, StyleSheet, View } from "react-native";
+import ChangeThemeButton from "../../components/change-theme-button";
 import { Button, ButtonText } from "../../components/ui/button";
 import { CustomText } from "../../components/ui/text";
 import { VStack } from "../../components/ui/vstack";
@@ -38,13 +39,16 @@ export default function HomeScreen() {
       </VStack>
     );
   }
-  console.log(sections);
+
   const selectedSection = sections?.find(
     (section: any) => section.id === selectedSectionId
   );
 
   return (
     <VStack style={styles.titleContainer} space="xl">
+      <View className="absolute z-10 top-4 right-4">
+        <ChangeThemeButton />
+      </View>
       <CustomText size="2xl" bold>
         Olá, seja bem-vindo
       </CustomText>

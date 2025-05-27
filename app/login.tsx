@@ -1,7 +1,8 @@
 import { router } from "expo-router";
-
 import { useState } from "react";
+import { View } from "react-native";
 import Toast from "react-native-toast-message";
+import ChangeThemeButton from "../components/change-theme-button";
 import { Button, ButtonText } from "../components/ui/button";
 import {
   FormControl,
@@ -12,12 +13,10 @@ import { Input, InputField } from "../components/ui/input";
 import { CustomText } from "../components/ui/text";
 import { VStack } from "../components/ui/vstack";
 import { login } from "../services/auth/login";
-import { useThemeStore } from "../store/use-theme-store";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { theme, toggleTheme } = useThemeStore();
 
   const handleSubmit = async () => {
     try {
@@ -27,71 +26,61 @@ export default function SignIn() {
       console.log(error);
     }
   };
+
   return (
-    <VStack className="items-center flex-1 w-full p-4 justify-evenly">
-      <VStack className="items-center " space="lg">
-        <CustomText className="text-3xl font-bold text-primary-500">
-          Entrar
-        </CustomText>
-        <CustomText className="text-xl font-bold">Bem Vindo!</CustomText>
-        <Button onPress={toggleTheme}>
-          <ButtonText>Trocar tema</ButtonText>
-        </Button>
-      </VStack>
-      <VStack className="items-center w-full" space="xl">
-        <FormControl
-          isDisabled={false}
-          isReadOnly={false}
-          isRequired={false}
-          className="w-full"
-        >
-          <FormControlLabel>
-            <FormControlLabelText>Email</FormControlLabelText>
-          </FormControlLabel>
-          <Input className="my-1 ">
-            <InputField
-              type="text"
-              placeholder="Digite o email..."
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-            />
-          </Input>
-          <FormControlLabel>
-            <FormControlLabelText>Senha</FormControlLabelText>
-          </FormControlLabel>
-          <Input className="my-1">
-            <InputField
-              type="password"
-              placeholder="Digite a senha..."
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-            />
-          </Input>
-          {/* <FormControlHelper>
-            <FormControlHelperText>
-              Must be atleast 6 characters.
-            </FormControlHelperText>
-          </FormControlHelper>
-          <FormControlError>
-            <FormControlErrorIcon as={AlertCircleIcon} />
-            <FormControlErrorText>
-              Atleast 6 characters are required.
-            </FormControlErrorText>
-          </FormControlError> */}
-        </FormControl>
-        <Button className="mt-4 " shadow fullWidth onPress={handleSubmit}>
-          <ButtonText>Entrar</ButtonText>
-        </Button>
-        <Button
-          variant="link"
-          fullWidth
-          onPress={() => router.push("/register")}
-        >
-          <CustomText>Cadastrar-se</CustomText>
-        </Button>
+    <View className="items-center justify-center flex-1 px-4 bg-background">
+      <View className="absolute z-10 top-16 right-6">
+        <ChangeThemeButton />
+      </View>
+
+      <VStack className="items-center w-full space-y-8">
+        <VStack className="items-center" space="lg">
+          <CustomText className="text-3xl font-bold text-primary-500">
+            Entrar
+          </CustomText>
+          <CustomText className="text-xl font-bold">Bem Vindo!</CustomText>
+        </VStack>
+
+        <VStack className="items-center w-full" space="xl">
+          <FormControl className="w-full">
+            <FormControlLabel>
+              <FormControlLabelText>Email</FormControlLabelText>
+            </FormControlLabel>
+            <Input className="my-1">
+              <InputField
+                type="text"
+                placeholder="Digite o email..."
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+              />
+            </Input>
+            <FormControlLabel>
+              <FormControlLabelText>Senha</FormControlLabelText>
+            </FormControlLabel>
+            <Input className="my-1">
+              <InputField
+                type="password"
+                placeholder="Digite a senha..."
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+              />
+            </Input>
+          </FormControl>
+
+          <Button className="mt-4" shadow fullWidth onPress={handleSubmit}>
+            <ButtonText>Entrar</ButtonText>
+          </Button>
+          <Button
+            variant="link"
+            fullWidth
+            onPress={() => router.push("/register")}
+          >
+            <CustomText>Cadastrar-se</CustomText>
+          </Button>
+        </VStack>
       </VStack>
 
       <Toast />
-    </VStack>
+    </View>
   );
 }
