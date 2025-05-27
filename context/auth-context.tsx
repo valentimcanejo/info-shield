@@ -36,7 +36,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const verifyToken = async () => {
     try {
       const storageLogado = await AsyncStorage.getItem("token");
-      console.log("storageLogado", storageLogado);
+
       if (storageLogado) {
         const tokenValidado = await validarToken({ token: storageLogado });
 

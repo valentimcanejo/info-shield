@@ -1,75 +1,99 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { useQuery } from "@tanstack/react-query";
+import React, { useEffect, useState } from "react";
+import { FlatList, StatusBar, StyleSheet, View } from "react-native";
+import { Button, ButtonText } from "../../components/ui/button";
+import { CustomText } from "../../components/ui/text";
+import { VStack } from "../../components/ui/vstack";
+import api from "../../services/auth/api";
+import { Section } from "../../types/section";
 
 export default function HomeScreen() {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["sections"],
+    queryFn: () => api.get("/sections"),
+  });
+
+  const sections = (data?.data as Section[]) || [];
+
+  const [selectedSectionId, setSelectedSectionId] = useState("");
+
+  useEffect(() => {
+    if (sections.length > 0 && !selectedSectionId) {
+      setSelectedSectionId(sections[0].id);
+    }
+  }, [sections]);
+
+  const selectedSection = sections.find(
+    (section: any) => section.id === selectedSectionId
+  );
+
+  if (isLoading) {
+    return (
+      <VStack style={styles.titleContainer}>
+        <CustomText>Carregando...</CustomText>
+      </VStack>
+    );
+  }
+
+  if (error) {
+    return (
+      <VStack style={styles.titleContainer}>
+        <CustomText>Erro ao carregar as seções.</CustomText>
+      </VStack>
+    );
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <VStack style={styles.titleContainer} space="xl">
+      <CustomText size="2xl" bold>
+        Olá, seja bem-vindo
+      </CustomText>
+      <CustomText size="2xl">
+        Irei mostrar algumas dicas de segurança para o seu celular
+      </CustomText>
+
+      <FlatList
+        data={sections}
+        keyExtractor={(item) => item.id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{ marginVertical: 10 }}
+        contentContainerStyle={{ gap: 8 }}
+        renderItem={({ item }) => (
+          <Button
+            variant={item.id === selectedSectionId ? "solid" : "outline"}
+            onPress={() => setSelectedSectionId(item.id)}
+          >
+            <ButtonText>{item.title}</ButtonText>
+          </Button>
+        )}
+      />
+
+      <FlatList
+        data={selectedSection?.data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.stepContainer}>
+            <CustomText size="lg" bold>
+              {item.title}
+            </CustomText>
+            <CustomText>{item.desc}</CustomText>
+          </View>
+        )}
+        ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
+      />
+    </VStack>
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+    marginTop: StatusBar.currentHeight,
+    padding: 20,
   },
   stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+    padding: 12,
+    backgroundColor: "#f2f2f2",
+    borderRadius: 8,
   },
 });

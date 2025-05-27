@@ -10,5 +10,55 @@
       "password": "$2a$10$oL0oZzZ1SqflWFforAu.sugyrY80cfkNDq8oFx3VWAirB9Zno4ALG",
       "id": 2
     }
+  ],
+  "sections": [
+    {
+      "id": "tips",
+      "title": "Dicas",
+      "data": [
+        {
+          "id": "1",
+          "title": "Não clique em links suspeitos",
+          "desc": "Evite phishing e golpes por e-mail."
+        },
+        {
+          "id": "2",
+          "title": "Use autenticação 2FA",
+          "desc": "Adicione uma camada extra de segurança."
+        }
+      ]
+    },
+    {
+      "id": "alerts",
+      "title": "Alertas",
+      "data": [
+        {
+          "id": "1",
+          "title": "Firewall desativado",
+          "desc": "Ative o firewall no servidor X."
+        },
+        {
+          "id": "2",
+          "title": "Antivírus desatualizado",
+          "desc": "Atualize os antivírus nas máquinas da rede."
+        }
+      ]
+    },
+    {
+      "id": "device",
+      "title": "Dispositivo",
+      "data": [
+        {
+          "id": "1",
+          "title": "Fabricante",
+          "desc": "Samsung"
+        },
+        {
+          "id": "2",
+          "title": "Sistema Operacional",
+          "desc": "Android 13"
+        }
+      ]
+    }
   ]
 }
