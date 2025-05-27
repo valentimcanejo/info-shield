@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { View } from "react-native";
 import Toast from "react-native-toast-message";
 import ChangeThemeButton from "../components/change-theme-button";
@@ -14,13 +14,22 @@ import { CustomText } from "../components/ui/text";
 import { VStack } from "../components/ui/vstack";
 import { login } from "../services/auth/login";
 
-export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+type FormDataProps = {
+  email: string;
+  password: string;
+};
 
-  const handleSubmit = async () => {
+export default function SignIn() {
+  const { control, handleSubmit } = useForm<FormDataProps>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = async (data: FormDataProps) => {
     try {
-      await login({ email, password });
+      await login({ email: data.email, password: data.password });
       router.replace("/");
     } catch (error) {
       Toast.show({
@@ -50,28 +59,46 @@ export default function SignIn() {
             <FormControlLabel>
               <FormControlLabelText>Email</FormControlLabelText>
             </FormControlLabel>
-            <Input className="my-1">
-              <InputField
-                type="text"
-                placeholder="Digite o email..."
-                value={email}
-                onChangeText={(text) => setEmail(text)}
-              />
-            </Input>
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, value } }) => (
+                <Input className="my-1">
+                  <InputField
+                    type="text"
+                    placeholder="Digite o email..."
+                    value={value}
+                    onChangeText={onChange}
+                  />
+                </Input>
+              )}
+            />
+
             <FormControlLabel>
               <FormControlLabelText>Senha</FormControlLabelText>
             </FormControlLabel>
-            <Input className="my-1">
-              <InputField
-                type="password"
-                placeholder="Digite a senha..."
-                value={password}
-                onChangeText={(text) => setPassword(text)}
-              />
-            </Input>
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, value } }) => (
+                <Input className="my-1">
+                  <InputField
+                    type="password"
+                    placeholder="Digite a senha..."
+                    value={value}
+                    onChangeText={onChange}
+                  />
+                </Input>
+              )}
+            />
           </FormControl>
 
-          <Button className="mt-4" shadow fullWidth onPress={handleSubmit}>
+          <Button
+            className="mt-4"
+            shadow
+            fullWidth
+            onPress={handleSubmit(onSubmit)}
+          >
             <ButtonText>Entrar</ButtonText>
           </Button>
           <Button
