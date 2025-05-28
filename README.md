@@ -57,7 +57,7 @@ cd ..
 
 ### 4️⃣ Configure as variáveis de ambiente
 
-Na **raiz do projeto** (onde está o arquivo `package.json` da aplicação Expo), crie um arquivo chamado **`.env`** e adicione:
+Na **raiz do projeto** (onde está o arquivo `package.json` da aplicação Expo), crie um arquivo chamado **`.env.local`** e adicione:
 
 ```
 EXPO_PUBLIC_API_KEY=http://SEU_IP_LOCAL:3001
@@ -83,7 +83,7 @@ ifconfig
 
 Procure pelo endereço da sua rede (normalmente começa com `192.168.x.x` ou `10.x.x.x`).
 
-✅ **Exemplo de `.env`:**
+✅ **Exemplo de `.env.local`:**
 
 ```
 EXPO_PUBLIC_API_KEY=http://192.168.0.2:3001
@@ -137,7 +137,7 @@ Use o aplicativo **Expo Go** no seu dispositivo físico para escanear o QR Code 
 ## ❗ Observações importantes
 
 - ⚠️ Certifique-se de que o backend esteja rodando **antes de iniciar** a aplicação Expo.
-- 🌐 Se o seu IP mudar (ex.: ao trocar de rede Wi-Fi), **atualize o arquivo `.env`** com o novo IP.
+- 🌐 Se o seu IP mudar (ex.: ao trocar de rede Wi-Fi), **atualize o arquivo `.env.local`** com o novo IP.
 
 ---
 
