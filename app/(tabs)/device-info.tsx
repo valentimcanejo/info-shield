@@ -32,7 +32,7 @@ export default function DeviceInfo() {
           </VStack>
           <VStack>
             <CustomText size="lg" bold>
-              Versão do sistema:
+              Versão do SDK:
             </CustomText>
             <CustomText size="lg">{deviceInfo.getSDKVersion()}</CustomText>
           </VStack>
